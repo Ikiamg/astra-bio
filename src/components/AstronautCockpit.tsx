@@ -78,7 +78,7 @@ function TelemetryCards({ day, sample, advanced, toggleAdvanced }: {
       <h3>{activeMetric.name} on day {day}</h3>
       <dl><div><dt>Recorded</dt><dd>{sample[activeMetric.key].toFixed(activeMetric.digits)} {activeMetric.unit}</dd></div>
         <div><dt>Prior N-of-1 baseline</dt><dd>{sample.prior[activeMetric.key].mean.toFixed(activeMetric.digits)} {activeMetric.unit}</dd></div>
-        <div><dt>Directional model input</dt><dd>{sample.z[activeMetric.key].toFixed(2)} z-score</dd></div></dl>
+        <div><dt>Deviation from prior baseline</dt><dd>{sample.z[activeMetric.key].toFixed(2)} z-score</dd></div></dl>
     </div>}
   </section>;
 }

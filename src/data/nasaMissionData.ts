@@ -94,7 +94,7 @@ export function protocolsFor(day: MissionDay): Protocol[] {
     {
       id: 'recovery', system: 'CIRCADIAN', title: 'Circadian & autonomic recovery',
       detail: day === 25 ? 'Confirm the scheduled lighting transition and hydration check.' :
-        'Simulate the SSLA lighting transition (480 nm daytime, reduced blue at night) and confirm the hydration check.',
+        'Simulate the SSLA lighting transition (480 nm daytime, reduced blue at night). Log the isotonic hydration and dietary antioxidant checks.',
     },
   ];
 }
