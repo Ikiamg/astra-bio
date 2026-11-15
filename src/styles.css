@@ -226,6 +226,11 @@ h1, h2, h3, p, figure { margin: 0; }
   .metric-card { min-height: 105px; padding: 10px; }
   .dashboard-grid, .ground-grid, .downlink-grid, .evidence-list { grid-template-columns: minmax(0, 1fr); }
 }
+@media (max-width: 380px) {
+  .mission-nav button { white-space: normal; line-height: 1.15; }
+  .scenario-rail { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .scenario-rail button { height: 100%; white-space: normal; line-height: 1.2; }
+}
 @media (prefers-reduced-motion: reduce) {
   .breathing-orbit.breathing div { animation: none; }
 }
