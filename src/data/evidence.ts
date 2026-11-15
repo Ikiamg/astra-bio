@@ -1,0 +1,86 @@
+export const evidence = [
+  {
+    title: 'NASA Science · Mars Planet Globe',
+    tag: 'MISSION IMAGE',
+    url: 'https://science.nasa.gov/resource/mars-planet-globe/',
+    detail: 'The console uses the Valles Marineris mosaic assembled from 102 Viking Orbiter images. Image credit: NASA/JPL-Caltech.',
+  },
+  {
+    title: 'NASA-STD-3001 Vol. 2, Rev. F',
+    tag: 'MODEL REFERENCE',
+    url: 'https://standards.nasa.gov/system/files/tmp/NASA-STD-3001%20Vol%202%20Rev%20F.pdf',
+    detail: 'Requirement V2 6004 caps the one-hour mean habitat ppCO₂ at 3.0 mmHg. The demo uses this as a comparison line for its synthetic cabin readings.',
+  },
+  {
+    title: 'NASA Human Research Program · Human Health and Performance',
+    tag: 'MODEL REFERENCE',
+    url: 'https://www.nasa.gov/wp-content/uploads/2024/01/human-health-and-performance.pdf',
+    detail: 'NASA describes Earth–Mars one-way communication delays of up to 22 minutes. The demo uses 22 minutes for its delayed-link mode and 0 seconds for its simplified ISS mode.',
+  },
+  {
+    title: 'NASA-STD-3001 Vol. 1, Rev. C',
+    tag: 'CREW HEALTH CONTEXT',
+    url: 'https://standards.nasa.gov/standard/NASA/NASA-STD-3001_VOL_1',
+    detail: 'Section 4.8 gives space radiation requirements, including a career effective dose below 600 mSv (V1 4030). This career limit is displayed as context and is outside the scoring model.',
+  },
+  {
+    title: 'NASA PDS · Curiosity RAD archive',
+    tag: 'ENVIRONMENTAL DATA',
+    url: 'https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=MSL-M-RAD-3-RDR-V1.0',
+    detail: 'MSL-M-RAD-3-RDR-V1.0 provides radiation measurements from the Mars Science Laboratory cruise and surface mission. This archive is linked for comparison with the synthetic mission.',
+  },
+  {
+    title: 'NASA NTRS · Curiosity cruise dose equivalent',
+    tag: 'PUBLISHED MEASUREMENT',
+    url: 'https://ntrs.nasa.gov/api/citations/20180007936/downloads/20180007936.pdf',
+    detail: 'NASA reports a Curiosity cruise GCR dose equivalent rate of 1.84 ± 0.33 mSv/day, excluding solar particle events. The reading applies to that vehicle and period. The demo dose rates are scenario fixtures.',
+  },
+  {
+    title: 'NASA OSDR · Inspiration4, OSD-570',
+    tag: 'BIOMEDICAL DATA',
+    url: 'https://osdr.nasa.gov/bio/repo/data/studies/OSD-570',
+    detail: 'Peripheral blood mononuclear cell profiling and immune responses. This study provides biological context. The demo HRV, resting heart rate and sleep series are generated independently.',
+  },
+  {
+    title: 'NASA OSDR · Head-down bed rest, OSD-946',
+    tag: 'ANALOG DATA',
+    url: 'https://osdr.nasa.gov/bio/repo/data/studies/OSD-946',
+    detail: 'A 70-day, 6° head-down tilt bed rest exercise study. It supports the use of analog studies to investigate adaptation. The demo acclimation curve is synthetic.',
+  },
+  {
+    title: 'NASA · Twins Study',
+    tag: 'BIOMEDICAL CONTEXT',
+    url: 'https://www.nasa.gov/humans-in-space/twins-study/faqs-nasa-twins-study/',
+    detail: 'The flight twin spent 340 days aboard the ISS. The paired ground comparison motivates personalized longitudinal monitoring.',
+  },
+  {
+    title: 'NASA · Advanced Resistive Exercise Device',
+    tag: 'COUNTERMEASURE CONTEXT',
+    url: 'https://www.nasa.gov/news-release/nasa-study-provides-new-findings-on-protecting-astronauts-bones-through-diet-and-exercise/',
+    detail: 'NASA describes resistive exercise in orbit and reports bone density outcomes among crew who used ARED. The load adjustments in this demo are scenario examples.',
+  },
+  {
+    title: 'NASA Human Research Roadmap · SANS',
+    tag: 'COUNTERMEASURE RESEARCH',
+    url: 'https://humanresearchroadmap.nasa.gov/Risks/risk.aspx?i=105',
+    detail: 'NASA documents spaceflight-associated neuro-ocular syndrome, headward fluid shift, and research into lower-body negative pressure (LBNP). The demo sequence illustrates a review workflow.',
+  },
+  {
+    title: 'NASA Human Research Roadmap · ISS lighting',
+    tag: 'COUNTERMEASURE RESEARCH',
+    url: 'https://humanresearchroadmap.nasa.gov/Gaps/gap.aspx?i=703',
+    detail: 'Programmable solid-state light assemblies (SSLAs) are studied for alertness, sleep and circadian entrainment. The demo light settings are illustrative.',
+  },
+  {
+    title: 'NASA OCHMO · Radiation Protection',
+    tag: 'COUNTERMEASURE CONTEXT',
+    url: 'https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-020-radiation-protection.pdf',
+    detail: 'The technical brief describes shielding, dosimetry and taking shelter in response to a solar particle event.',
+  },
+  {
+    title: 'PhysioNet · Physiologic Response to Changes in Posture',
+    tag: 'NON-NASA REFERENCE',
+    url: 'https://physionet.org/content/prcp/1.0.0/',
+    detail: 'Short ECG and arterial pressure recordings from tilt and standing maneuvers in ten healthy volunteers. This is general posture-response context. The 14-day demo acclimation curve is synthetic.',
+  },
+] as const;
