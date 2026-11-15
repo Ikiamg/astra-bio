@@ -1,7 +1,6 @@
-import { marsDelayMinutes, scenarioDays, scenarios, type MissionDay } from '../data/nasaMissionData';
-
 export type Role = 'crew' | 'ground';
-export type CommsMode = 'leo' | 'mars' | 'blackout';
+export type CommsMode = 'LEO_REALTIME' | 'MARS_DELAY' | 'BLACKOUT';
+const scenarios = [[25, 'Nominal Transit'], [42, 'Solar Particle Event'], [55, 'Bone & SANS Risk']] as const;
 
 interface TopBarProps {
   role: Role;
@@ -27,22 +26,28 @@ export function MissionTopBar({ role, setRole, openAssessments, openSources, off
   </header>;
 }
 
-export function ScenarioRail({ day, setDay, comms, setComms }: {
-  day: MissionDay; setDay: (day: MissionDay) => void; comms: CommsMode; setComms: (mode: CommsMode) => void;
+export function ScenarioRail({ day, setDay, comms, setComms, msci }: {
+  day: number; setDay: (day: number) => void; comms: CommsMode; setComms: (mode: CommsMode) => void; msci: number;
 }) {
   return <div className="mission-controls">
     <div className="scenario-rail" role="group" aria-label="Mission scenario">
       <span className="scenario-label">Mission scenario</span>
-      {scenarioDays.map(missionDay => <button className={day === missionDay ? 'selected' : ''} key={missionDay} aria-pressed={day === missionDay} onClick={() => setDay(missionDay)}>
-        <span className="scenario-day">D{missionDay}</span><span>{scenarios[missionDay].short}</span>
+      {scenarios.map(([missionDay, label]) => <button className={day === missionDay ? 'selected' : ''} key={missionDay} aria-pressed={day === missionDay} onClick={() => setDay(missionDay)}>
+        <span className="scenario-day">D{missionDay}</span><span>{label}</span>
       </button>)}
     </div>
+    <label className="mission-day-control">
+      <span>Mission day</span>
+      <input aria-label="Mission day" type="range" min="1" max="60" value={day} onChange={event => setDay(Number(event.target.value))} />
+      <output>{day}/60</output>
+      <span className="mission-score">MSCI {msci}%</span>
+    </label>
     <label className="link-control">
       <span>Earth link</span>
       <select aria-label="Communications mode" value={comms} onChange={event => setComms(event.target.value as CommsMode)}>
-        <option value="leo">ISS / Real time</option>
-        <option value="mars">Mars / {marsDelayMinutes} min delay</option>
-        <option value="blackout">Mars / Blackout</option>
+        <option value="LEO_REALTIME">ISS / Real time</option>
+        <option value="MARS_DELAY">Mars / 22 min delay</option>
+        <option value="BLACKOUT">Mars / Blackout</option>
       </select>
     </label>
   </div>;

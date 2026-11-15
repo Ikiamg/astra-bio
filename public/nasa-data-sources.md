@@ -11,7 +11,7 @@ The dashboard uses NASA/JPL-Caltech's Valles Marineris hemisphere mosaic, assemb
 | Value | Where it appears | Primary source |
 | --- | --- | --- |
 | **3.0 mmHg** maximum one-hour mean cabin ppCO₂ | Crew telemetry comparison and the ground console chart reference line. The demo cabin readings are synthetic and represent one-hour observations at the replay sample times. | [NASA-STD-3001 Vol. 2 Rev. F, §6.2.1.3, V2 6004](https://standards.nasa.gov/system/files/tmp/NASA-STD-3001%20Vol%202%20Rev%20F.pdf) |
-| **Up to 22 minutes** one-way Earth–Mars delay | Mars link selector and simulated downlink ETA. The ISS mode uses 0 seconds as a demo simplification. Blackout holds the packet onboard. The clock control advances the simulation to receipt. | [NASA HRP, Human Health and Performance](https://www.nasa.gov/wp-content/uploads/2024/01/human-health-and-performance.pdf) |
+| **Up to 22 minutes** one-way Earth–Mars delay | Mars link selector and simulated downlink ETA. The ISS mode uses 0.4 seconds as an illustrative comparison. Blackout holds the packet onboard. The clock control advances the simulation to receipt. | [NASA HRP, Human Health and Performance](https://www.nasa.gov/wp-content/uploads/2024/01/human-health-and-performance.pdf) |
 
 ## Published NASA numbers displayed as context
 
@@ -39,8 +39,14 @@ The dashboard uses NASA/JPL-Caltech's Valles Marineris hemisphere mosaic, assemb
 
 ## Synthetic data and evaluation
 
-The simulation generates day, HRV RMSSD (ms), resting HR (bpm), sleep efficiency (%), radiation dose (mSv/day), cabin ppCO₂ (mmHg), ARED compliance (%), projected change in bone mineral density (%), and core temperature (°C). The Flight Surgeon Console exports all 60 daily samples as CSV.
+The simulation generates HRV RMSSD, resting HR, sleep efficiency, daily and cumulative radiation, cabin ppCO₂, ARED load compliance, estimated bone mineral density change, a SANS risk index, and core temperature. It also computes EWMA bands, directional z-scores and MSCI. All signals in the replay are synthetic. The Flight Surgeon Console exports the 60 daily samples as CSV.
 
-The scenario inputs, EWMA initial state and minimum scales, MSCI weights and cutoffs, PVT lapse criterion, breathing gain, and countermeasure settings are demo parameters. The Day 42 profile includes 2.15 mSv/day, 3.9 mmHg, 61% sleep efficiency, 25 ms RMSSD and a 0.4 °C increase from the prior day. It produces an MSCI of 86% and contributions of 42%, 35% and 23% from the autonomic, radiation and combined circadian/CO₂ factors respectively. Attribution describes the mathematical model.
+The model uses EWMA learning rates of 0.28 during acclimation, 0.08 during cruise, and 0.012 when anomaly gating is active. MSCI weights, SANS scoring, the 355 ms PVT lapse criterion, breathing gain, and countermeasure settings are demo parameters. Model attribution measures the relative contributions of the four simulated risk domains. The PVT measures browser reaction time. The displayed breathing response and any example assessment values are simulations.
 
-The benchmark reports 18 fixed per-signal flags and 1 adaptive daily alert during a scripted 14-day acclimation without a labeled event. The solar-event lead compares the first MSCI ≥35 against the first resting HR ≥100 bpm or core temperature ≥38 °C in a scripted hourly replay. The +38-hour result depends on these scenario inputs and comparator definitions. The prototype has no clinical validation.
+Across 30 seeded synthetic trajectories, the comparator counts average 6.6 fixed per-signal flags and 1.0 adaptive alerts in the first 14 days. The computed reduction is 84.8%. The simulated solar-event lead averages 42.5 hours (38–46). The lead comparison uses an MSCI threshold of 65% against the fixed comparator of 80 bpm or 37.22 °C. These are simulation results, and the prototype has no clinical validation.
+
+## Additional agency research context
+
+- ESA's space medicine overview describes ground analogs including bed rest. [ESA Human Health](https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Research/Human_health)
+- Canada's Bio-Monitor shows how wearables can record physiological data on the ISS. [CSA Bio-Monitor](https://www.asc-csa.gc.ca/eng/sciences/bio-monitor.asp)
+- JAXA's Area PADLES program measures the radiation environment inside Kibo. [JAXA Area PADLES](https://humans-in-space.jaxa.jp/spacerad/EI001.html)

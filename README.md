@@ -1,52 +1,41 @@
 # A.S.T.R.A.-Bio
 
-An English-language astronaut health monitoring demo for the [2026 NASA Space Apps Challenge](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/).
+A.S.T.R.A.-Bio is an independent, English-language demo for the [2026 NASA Space Apps Challenge](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/).
 
-[Open the deployed demo](https://astra-bio.ikiamjosealvarezvega.workers.dev/)
+[Open the Cloudflare demo](https://astra-bio.ikiamjosealvarezvega.workers.dev/)
 
-## Demo walkthrough
+## Walkthrough
 
-1. Start in the crew cockpit on Day 25 for the 18% nominal MSCI.
-2. Select Day 42 Solar Particle Event. Inspect the 86% MSCI and its 42%, 35%, and 23% driver shares.
-3. Confirm the storm-shelter protocol and select Mars blackout.
-4. Open Flight Surgeon. Compare 18 vs. 1 false-alert flags during acclimation and a 38-hour lead in the scripted solar event. Restore the link by selecting the 22-minute Mars mode, then advance the mission clock to simulate receipt of the packet.
-5. Select Day 55 for the bone and neuro-ocular scenario or open Assessments to try the breathing pacer and reaction-time test.
+1. The app opens on Day 42 in Mars delay mode. Inspect a telemetry card or open **All signals** to see daily and cumulative radiation, ARED load, estimated bone density change, the SANS risk score, and other observations.
+2. Toggle a countermeasure checklist item and compare the simulated post-action score. Try the breathing pacer, simulated HRV boost, and 15-second reaction test.
+3. Switch to **Flight Surgeon** and compare the 60-day benchmark with the 72-hour solar-event view. Explore the synchronized charts with the mission-day slider or by clicking a chart.
+4. Select **Mars / Blackout** to hold the packet. Restore the delayed link, then advance the clock to simulate receipt. CSV and FHIR-inspired JSON exports run in the browser.
+5. Open **Science & Data** for simulation parameters, equations, source links and the downloadable register.
 
 ## Run locally
 
-Use Node.js 22 or later.
+With Node.js 22 or later:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-To build and test the production assets, including caching for offline reloads:
+To build and test offline caching:
 
 ```sh
 npm run build
 npm run preview
 ```
 
-The downloadable offline ZIP includes the production `dist/` directory. With Python available, you can serve it locally without downloading JavaScript dependencies:
+The downloadable archive includes the compiled `dist/` directory. You can serve it locally with `python -m http.server 4173 --bind 127.0.0.1 --directory dist`. On localhost or HTTPS, visit once and wait for **Offline ready** before reloading without a network. The app bundles its image, fonts and simulation. External reference links use the network.
 
-```sh
-python -m http.server 4173 --bind 127.0.0.1 --directory dist
-```
+## Model and sources
 
-Open `http://127.0.0.1:4173`. In production or on localhost, visit once and wait for the service worker to install before reloading offline. The app and all its fonts, charts, telemetry, assessments, and exports are packaged together. External reference links require a network connection.
+The 60-day replay, 30-seed Monte Carlo benchmark, clinical cutoffs, automated actions, and risk scores are synthetic. The current simulated benchmark computes 84.8% fewer acclimation alerts and a 42.5-hour mean solar-event lead. The PVT measures actual browser interaction timing. The breathing response, starting assessments, and downlink delivery are simulated.
 
-## Model and data
+The engine and model configuration are in `src/engine/`. See the [NASA data and reference register](public/nasa-data-sources.md) for numerical references, research context, and credit for the Viking Mars mosaic from NASA/JPL-Caltech.
 
-- `src/data/nasaMissionData.ts` defines the 60-day synthetic telemetry and scenario fixtures.
-- `src/engine/astraBioEngine.ts` computes pre-update z-scores and the EWMA baseline, MSCI, model contributions, and comparisons.
-- `public/nasa-data-sources.md` records every NASA source and describes how each is used. NASA's one-hour habitat ppCO₂ reference and Mars delay assumption are the two values used directly by the app. The linked datasets and other NASA values provide context.
-- The daily fixed chart counts per-signal flags. The hourly solar-event comparison uses a separate symptom-level fixed gate. Results describe these scripted inputs and comparators. The risk model and assessments have no clinical validation.
-- Assessment reaction times are measured in the browser. Breathing-related RMSSD gains and downlink delivery are simulations.
-- Protocol confirmations are stored in the current browser. Click any crew signal for its recorded value, prior baseline and z-score. Use the Flight Surgeon telemetry slider to inspect each of the 60 days.
+The prototype is served using Cloudflare Workers Static Assets. The `dist/` directory is the deployment artifact.
 
-## Imagery
-
-Mars mosaic from the Viking orbiters. Image credit: NASA/JPL-Caltech. [NASA Science image and metadata](https://science.nasa.gov/resource/mars-planet-globe/)
-
-The demo is served from Cloudflare Workers Static Assets. The contents of `dist/` are the deployment artifact. See [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) for the upload workflow.
+The original design and modeling approach came from the project team. Google Antigravity and Codex assisted with code and writing.

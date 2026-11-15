@@ -1,5 +1,23 @@
 export const evidence = [
   {
+    title: 'ESA · Human health and bed-rest research',
+    tag: 'ANALOG RESEARCH',
+    url: 'https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Research/Human_health',
+    detail: 'Research context for simulated weightlessness, deconditioning and adaptation.',
+  },
+  {
+    title: 'CSA · Bio-Monitor',
+    tag: 'MONITORING CONTEXT',
+    url: 'https://www.asc-csa.gc.ca/eng/sciences/bio-monitor.asp',
+    detail: 'ISS wearable system that records physiological signals, including cardiac electrical activity.',
+  },
+  {
+    title: 'JAXA · Area PADLES on Kibo',
+    tag: 'DOSIMETRY CONTEXT',
+    url: 'https://humans-in-space.jaxa.jp/spacerad/EI001.html',
+    detail: 'Fixed-point dosimetry for the radiation environment inside Kibo.',
+  },
+  {
     title: 'NASA Science · Mars Planet Globe',
     tag: 'MISSION IMAGE',
     url: 'https://science.nasa.gov/resource/mars-planet-globe/',
